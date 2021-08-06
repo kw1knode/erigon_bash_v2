@@ -25,7 +25,7 @@ PS3='Choose Erigon Branch: '
 branch=("Stable" "Latest" "Quit")
 select fav in "${branch[@]}"; do
     case $fav in
-        "stable")
+        "Stable")
             echo "you have chosen stable branch"
 	     git checkout stable
             ;;
