@@ -28,6 +28,7 @@ select fav in "${branch[@]}"; do
         "Stable")
             echo "you have chosen stable branch"
 	     git checkout stable
+	     break
             ;;
         "Latest")
             echo "you have chosen latest branch"
