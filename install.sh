@@ -1,24 +1,24 @@
 #!/bin/bash
-apt update -y
+sudo apt update -y
 #Prerequisites
-apt-get install -y build-essential supervisor wget git
+sudo apt-get install -y build-essential supervisor wget git
 
 echo "#Prerequisites Installed"
 
 #Install Golang
 wget https://golang.org/dl/go1.16.7.linux-amd64.tar.gz
-tar -C /usr/local -xzf go1.16.7.linux-amd64.tar.gz
-ln -s /usr/local/go/bin/go /usr/local/bin/go
+sudo tar -C /usr/local -xzf go1.16.7.linux-amd64.tar.gz
+sudo ln -s /usr/local/go/bin/go /usr/local/bin/go
 
 echo "Golang Installed"
 
 #Create Isolated User
-useradd -m -s /bin/bash erigon
+sudo useradd -m -s /bin/bash erigon
 
 cd /opt
-mkdir erigon
-mkdir github && cd github
-git clone https://github.com/ledgerwatch/erigon.git
+sudo mkdir erigon
+sudo mkdir github && cd github
+sudo git clone https://github.com/ledgerwatch/erigon.git
 cd erigon
 
 PS3='Choose Erigon Branch: '
@@ -45,11 +45,11 @@ select fav in "${branch[@]}"; do
     esac
 done
 
-make
-cp -r ./build /opt/erigon/
+sudo make
+sudo cp -r ./build /opt/erigon/
 
-mkdir -p /data/erigon/datadir
-chown -R erigon:erigon /data/erigon
+sudo mkdir -p /data/erigon/datadir
+sudo chown -R erigon:erigon /data/erigon
 
 echo  "[program:erigon]
 command=bash -c '/opt/erigon/build/bin/erigon --datadir="/data/erigon/datadir" --private.api.addr="0.0.0.0:9090"'
@@ -76,11 +76,11 @@ stdout_logfile=/var/log/supervisor/rpcdaemon.out.log
 stdout_logfile_maxbytes=1000000
 stdout_logfile_backups=10" >> /etc/supervisor/conf.d/rpcdaemon.conf \
 
-systemctl enable supervisor
-systemctl start supervisor
-supervisorctl update
+sudo systemctl enable supervisor
+sudo systemctl start supervisor
+sudo supervisorctl update
 sleep 5
-supervisorctl status rpcdaemon
+sudo supervisorctl status rpcdaemon
 sleep  5
 supervisorctl status erigon
 
