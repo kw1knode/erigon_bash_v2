@@ -20,9 +20,15 @@ Simple script to install and run erigon node + rpcdaemon
 
 `tail -f /var/log/supervisor/rpcdaemon.err.log`
 
-#### **If any changes are made run:**
+#### **If any changes are made to .confs run:**
 
 `supervisorctl update`
+
+`/etc/supervisor/conf.d/erigon.conf`
+`/etc/supervisor/conf.d/rpcdaemon.conf`
+
+
+
 
 
 #### **Updating Node**
