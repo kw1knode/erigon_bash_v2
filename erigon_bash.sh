@@ -61,7 +61,7 @@ stderr_logfile_backups=10
 stdout_logfile=/var/log/supervisor/erigon.out.log
 stdout_logfile_maxbytes=1000000
 stdout_logfile_backups=10
-stopwaitsecs=300" >> /etc/supervisor/conf.d/erigon.conf \n
+stopwaitsecs=300" >> /etc/supervisor/conf.d/erigon.conf \
 
 echo "[program:rpcdaemon]
 command=bash -c '/opt/erigon/build/bin/rpcdaemon --datadir="/data/erigon/datadir" --private.api.addr="localhost:9090" --http.addr="0.0.0.0" --http.port=8545 --http.vhosts="*" --http.corsdomain="*" --http.api="eth,debug,net,trace,web3,erigon" --ws'
@@ -73,7 +73,11 @@ stderr_logfile_maxbytes=1000000
 stderr_logfile_backups=10
 stdout_logfile=/var/log/supervisor/rpcdaemon.out.log
 stdout_logfile_maxbytes=1000000
-stdout_logfile_backups=10" >> /etc/supervisor/conf.d/rpcdaemon.conf \n
+stdout_logfile_backups=10" >> /etc/supervisor/conf.d/rpcdaemon.conf \
+
+systemctl enable supervisor
+systemctl start supervisor
+supervisorctl update
 
 
 
