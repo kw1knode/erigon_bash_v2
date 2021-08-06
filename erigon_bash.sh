@@ -46,3 +46,36 @@ done
 
 make
 cp -r ./build/bin /opt/erigon/
+
+mkdir -p /data/erigon/datadir
+chown -R erigon:erigon /data/erigon
+
+echo  "[program:erigon]
+command=bash -c '/opt/erigon/bin/erigon --datadir="/data/erigon/datadir" --private.api.addr="0.0.0.0:9090"'
+user=erigon
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/supervisor/erigon.err.log
+stderr_logfile_maxbytes=1000000
+stderr_logfile_backups=10
+stdout_logfile=/var/log/supervisor/erigon.out.log
+stdout_logfile_maxbytes=1000000
+stdout_logfile_backups=10
+stopwaitsecs=300" >> /etc/supervisor/conf.d/erigon.conf \n
+
+echo "[program:rpcdaemon]
+command=bash -c '/opt/erigon/build/bin/rpcdaemon --datadir="/data/erigon/datadir" --private.api.addr="localhost:9090" --http.addr="0.0.0.0" --http.port=8545 --http.vhosts="*" --http.corsdomain="*" --http.api="eth,debug,net,trace,web3,erigon" --ws'
+user=erigon
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/supervisor/rpcdaemon.err.log
+stderr_logfile_maxbytes=1000000
+stderr_logfile_backups=10
+stdout_logfile=/var/log/supervisor/rpcdaemon.out.log
+stdout_logfile_maxbytes=1000000
+stdout_logfile_backups=10" >> /etc/supervisor/conf.d/rpcdaemon.conf \n
+
+
+
+
+
