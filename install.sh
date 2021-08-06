@@ -1,5 +1,5 @@
 #!/bin/bash
-
+apt update -y
 #Prerequisites
 apt-get install -y build-essential supervisor wget git
 
