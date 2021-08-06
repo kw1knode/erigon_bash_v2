@@ -21,7 +21,7 @@ cp -r ./build/bin /opt/erigon/
 supervisorctl start erigon
 supervisorctl start rpcdaemon
 
-# Allow TPC/UDP 30303 from anywhere for peering
+#Allow TCP/UDP 30303 for peers
 ufw allow 30303
 
 
