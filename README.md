@@ -1,5 +1,4 @@
-#erigon_bash
-Simple script to install and run erigon node.
+Simple script to install and run erigon node + rpcdaemon.
 
 # Check on the erigon service:
 supervisorctl status erigon
