@@ -1,4 +1,14 @@
-Simple script to install and run erigon node + rpcdaemon.
+Simple script to install and run erigon node + rpcdaemon
+========================================================
+#### **Download install.sh**
+`git clone https://github.com/vpetoscia/erigon_bash.git`
+
+`cd erigon_bash`
+
+`chmod +x install.sh`
+
+#### **Run install.sh**
+`./install.sh`
 
 #### **Check on the erigon service:**
 `supervisorctl status erigon`
