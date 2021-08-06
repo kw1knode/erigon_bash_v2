@@ -2,6 +2,7 @@ Simple script to install and run erigon node + rpcdaemon.
 
 # Check on the erigon service:
 `supervisorctl status erigon`
+
 `tail -f /var/log/supervisor/erigon.err.log`
 
 # Check on the rpcdaemon status:
