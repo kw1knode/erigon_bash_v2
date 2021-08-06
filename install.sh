@@ -52,7 +52,7 @@ mkdir -p /data/erigon/datadir
 chown -R erigon:erigon /data/erigon
 
 echo  "[program:erigon]
-command=bash -c '/opt/erigon//build/bin/erigon --datadir="/data/erigon/datadir" --private.api.addr="0.0.0.0:9090"'
+command=bash -c '/opt/erigon/build/bin/erigon --datadir="/data/erigon/datadir" --private.api.addr="0.0.0.0:9090"'
 user=erigon
 autostart=true
 autorestart=true
