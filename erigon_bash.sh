@@ -21,22 +21,25 @@ mkdir github && cd github
 git clone https://github.com/ledgerwatch/erigon.git
 cd erigon
 
-PS3='Please enter your choice: '
-options=("Option 1" "Option 2" "Option 3" "Quit")
-select opt in "${options[@]}"
-do
-    case $opt in
-        "Stable Branch")
-            echo "you chose stable branch"
-            git checkout stable
+PS3='Choose Erigon Branch: '
+branch=("Stable" "Latest" "Quit")
+select fav in "${branch[@]}"; do
+    case $fav in
+        "stable")
+            echo "you have chosen stable branch"
+	     git checkout stable
             ;;
-        "Latest Branch")
-            echo "you chose latest release"
-            git checkout devel
+        "Latest")
+            echo "you have chosen latest branch"
+	    git checkout devel
+        
+        break
             ;;
-        "Quit")
-            break
-            ;;
+        
+	"Quit")
+	    echo "User requested exit"
+	    exit
+	    ;;
         *) echo "invalid option $REPLY";;
     esac
 done
