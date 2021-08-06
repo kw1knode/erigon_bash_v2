@@ -47,6 +47,9 @@ supervisorctl start rpcdaemon
 #### **Allow Peers**
 ```ufw allow 30303```
 
+#### **Allow RPC endpoint**
+```ufw allow from 1.1.1.1 to any port 8545```
+
 
 
 
