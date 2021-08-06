@@ -46,13 +46,13 @@ select fav in "${branch[@]}"; do
 done
 
 make
-cp -r ./build/bin /opt/erigon/
+cp -r ./build /opt/erigon/
 
 mkdir -p /data/erigon/datadir
 chown -R erigon:erigon /data/erigon
 
 echo  "[program:erigon]
-command=bash -c '/opt/erigon/bin/erigon --datadir="/data/erigon/datadir" --private.api.addr="0.0.0.0:9090"'
+command=bash -c '/opt/erigon//build/bin/erigon --datadir="/data/erigon/datadir" --private.api.addr="0.0.0.0:9090"'
 user=erigon
 autostart=true
 autorestart=true
@@ -65,7 +65,7 @@ stdout_logfile_backups=10
 stopwaitsecs=300" >> /etc/supervisor/conf.d/erigon.conf \
 
 echo "[program:rpcdaemon]
-command=bash -c '/opt/erigon/bin/rpcdaemon --datadir="/data/erigon/datadir" --private.api.addr="localhost:9090" --http.addr="0.0.0.0" --http.port=8545 --http.vhosts="*" --http.corsdomain="*" --http.api="eth,erigon,web3,net,debug,trace,txpool,shh" --ws'
+command=bash -c '/opt/erigon/build/bin/rpcdaemon --datadir="/data/erigon/datadir" --private.api.addr="localhost:9090" --http.addr="0.0.0.0" --http.port=8545 --http.vhosts="*" --http.corsdomain="*" --http.api="eth,erigon,web3,net,debug,trace,txpool,shh" --ws'
 user=erigon
 autostart=true
 autorestart=true
