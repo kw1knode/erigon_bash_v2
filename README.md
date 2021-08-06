@@ -32,7 +32,7 @@ git pull
 make
 supervisorctl stop rpcdaemon
 supervisorctl stop erigon
-cp -r ./build/bin /opt/erigon/
+cp -r ./build /opt/erigon/
 supervisorctl start erigon
 supervisorctl start rpcdaemon
 ```
