@@ -18,12 +18,19 @@ Simple script to install and run erigon node + rpcdaemon.
 
 `cd /opt/github/erigon/
 git pull
+
 make
+
 supervisorctl stop rpcdaemon
+
 supervisorctl stop erigon
+
 cp -r ./build/bin /opt/erigon/
+
 supervisorctl start erigon
+
 supervisorctl start rpcdaemon`
+
 
 #Allow TCP/UDP 30303 for peers
 `ufw allow 30303`
