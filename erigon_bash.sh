@@ -78,7 +78,9 @@ stdout_logfile_backups=10" >> /etc/supervisor/conf.d/rpcdaemon.conf \
 systemctl enable supervisor
 systemctl start supervisor
 supervisorctl update
-
+supervisorctl status rpcdaemon
+sleep 2
+supervisorctl status erigon
 
 
 
