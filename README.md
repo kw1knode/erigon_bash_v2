@@ -51,7 +51,7 @@ supervisorctl start rpcdaemon
 ```ufw allow from 1.1.1.1 to any port 8545```
 
 #### **Erigon 8.03 Alpha **
-```chaindata``` folder was moved from <datadir>/erigon/chaindata into <datadir>/chaindata. Please move ```chaindata``` manually before starting the new version
+```chaindata``` folder was moved from datadir/erigon/chaindata into datadir/chaindata. Please move ```chaindata``` manually before starting the new version
 
 
 
