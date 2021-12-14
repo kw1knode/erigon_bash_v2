@@ -65,7 +65,7 @@ stdout_logfile_backups=10
 stopwaitsecs=300" >> /etc/supervisor/conf.d/erigon.conf \
 
 echo "[program:rpcdaemon]
-command=bash -c '/opt/erigon/build/bin/rpcdaemon --datadir="/data/erigon/datadir" --private.api.addr="localhost:9090" --http.addr="0.0.0.0" --http.port=8545 --http.vhosts="*" --http.corsdomain="*" --http.api="eth,erigon,web3,net,debug,trace,txpool,shh" --ws'
+command=bash -c '/opt/erigon/build/bin/rpcdaemon --datadir="/data/erigon/datadir" --private.api.addr="localhost:9090" --http.addr="0.0.0.0" --http.port=8545 --http.vhosts="*" --http.corsdomain="*" --http.api="eth,erigon,web3,net,debug,trace,txpool" --ws'
 user=erigon
 autostart=true
 autorestart=true
