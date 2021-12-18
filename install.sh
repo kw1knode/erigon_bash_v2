@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt update -y
+apt update -y && apt upgrade -y && apt autoremove -y
 #Prerequisites
 sudo apt-get install -y build-essential supervisor wget git
 
