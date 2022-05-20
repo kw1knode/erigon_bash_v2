@@ -6,8 +6,8 @@ sudo apt-get install -y build-essential supervisor wget git
 echo "#Prerequisites Installed"
 
 #Install Golang
-wget https://golang.org/dl/go1.16.7.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.16.7.linux-amd64.tar.gz
+wget https://golang.org/dl/go1.18.2.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.18.2.linux-amd64.tar.gz
 sudo ln -s /usr/local/go/bin/go /usr/local/bin/go
 
 echo "Golang Installed"
