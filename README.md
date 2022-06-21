@@ -1,7 +1,7 @@
 Simple script to install and run erigon node + rpcdaemon
 ========================================================
 #### **Download install.sh**
-`git clone https://github.com/kw1knode/erigon_bash.git`
+`git clone --recurse-submodules -j8 https://github.com/ledgerwatch/erigon.git`
 
 `cd erigon_bash`
 
