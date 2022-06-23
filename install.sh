@@ -145,7 +145,7 @@ sudo apt-get install -y software-properties-common wget
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
 echo "deb https://packages.grafana.com/enterprise/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
 sudo apt-get update
-sudo apt-get install grafana-enterprise
+sudo apt-get install -y grafana-enterprise
 sleep 5
 wget https://raw.githubusercontent.com/kw1knode/erigon_bash/kw1knode-alpha/metrics.json -P /etc/grafana/provisioning/dashboards
 wget https://raw.githubusercontent.com/kw1knode/erigon_bash/kw1knode-alpha/dashboard.yml -P /etc/grafana/provisioning/dashboards
