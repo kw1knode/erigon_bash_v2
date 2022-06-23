@@ -50,6 +50,105 @@ sudo supervisorctl update
 sleep  5
 supervisorctl status erigon
 
+######################################################################################
+#####################                Node Exporter             #######################
+######################################################################################
 
+cd $HOME
+wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
+tar -xf node_exporter-1.3.1.linux-amd64.tar.gz
+sudo mv node_exporter-1.3.1.linux-amd64/node_exporter /usr/local/bin
+rm -r node_exporter-1.3.1.linux-amd64*
+sudo useradd -rs /bin/false node_exporter
+
+echo "[Unit]
+Description=Node Exporter
+After=network.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target" >> /etc/systemd/system/node_exporter.service \
+
+sudo systemctl daemon-reload
+sudo systemctl enable node_exporter
+sudo systemctl start node_exporter
+
+sleep 5
+
+######################################################################################
+#####################                Prometheus                #######################
+######################################################################################
+cd $HOME
+wget https://github.com/prometheus/prometheus/releases/download/v2.36.1/prometheus-2.36.1.linux-amd64.tar.gz
+tar -xf prometheus-2.36.1.linux-amd64.tar.gz
+sudo mv prometheus-2.36.1.linux-amd64/prometheus prometheus-2.36.1.linux-amd64/promtool /usr/local/bin
+sudo mkdir /etc/prometheus /var/lib/prometheus
+sudo mv prometheus-2.36.1.linux-amd64/consoles prometheus-2.36.1.linux-amd64/console_libraries /etc/prometheus
+rm -r prometheus-2.36.1.linux-amd64*
+
+echo "global:
+  scrape_interval: 10s
+
+scrape_configs:
+  - job_name: 'prometheus_metrics'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9090']
+  - job_name: 'node_exporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9100']
+  - job_name: 'erigon'
+    metrics_path: /debug/metrics/prometheus
+    scrape_interval: 10s
+    scheme: http
+    static_configs:
+       - targets: ['localhost:6060','localhost:6061']" >> /etc/prometheus/prometheus.yml \
+       
+sudo useradd -rs /bin/false prometheus
+sudo chown -R prometheus: /etc/prometheus /var/lib/prometheus
+
+echo "[Unit]
+Description=Prometheus
+After=network.target
+
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/usr/local/bin/prometheus \
+    --config.file /etc/prometheus/prometheus.yml \
+    --storage.tsdb.path /var/lib/prometheus/ \
+    --web.console.templates=/etc/prometheus/consoles \
+    --web.console.libraries=/etc/prometheus/console_libraries
+
+[Install]
+WantedBy=multi-user.target" >> /etc/systemd/system/prometheus.service \
+
+sudo systemctl daemon-reload
+sudo systemctl enable prometheus
+sudo systemctl start prometheus
+
+sleep 5
+
+######################################################################################
+#####################                GRAFANA                   #######################
+######################################################################################
+
+sudo apt-get install -y apt-transport-https
+sudo apt-get install -y software-properties-common wget
+wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+echo "deb https://packages.grafana.com/enterprise/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+sudo apt-get update
+sudo apt-get install grafana-enterprise
+sleep 5
+wget https://raw.githubusercontent.com/kw1knode/erigon_bash/kw1knode-alpha/metrics.json -P /etc/grafana/provisioning/dashboards
+wget https://raw.githubusercontent.com/kw1knode/erigon_bash/kw1knode-alpha/dashboard.yml -P /etc/grafana/provisioning/dashboards
+wget https://raw.githubusercontent.com/kw1knode/erigon_bash/kw1knode-alpha/prometheus.yaml
 
 
