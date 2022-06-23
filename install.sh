@@ -150,5 +150,6 @@ sleep 5
 wget https://raw.githubusercontent.com/kw1knode/erigon_bash/kw1knode-alpha/metrics.json -P /etc/grafana/provisioning/dashboards
 wget https://raw.githubusercontent.com/kw1knode/erigon_bash/kw1knode-alpha/dashboard.yml -P /etc/grafana/provisioning/dashboards
 wget https://raw.githubusercontent.com/kw1knode/erigon_bash/kw1knode-alpha/prometheus.yaml
+systemctl restart grafana-server
 
 
