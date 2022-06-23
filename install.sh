@@ -32,7 +32,7 @@ select fav in "${branch[@]}"; do
             ;;
         "Latest")
             echo "you have chosen latest branch"
-	    git checkout devel
+	    git checkout v2022.06.06
         
         break
             ;;
