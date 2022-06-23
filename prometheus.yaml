@@ -10,7 +10,7 @@ deleteDatasources:
 # whats available in the database
 datasources:
   # <string, required> name of the datasource. Required
-  - name: Prometheus
+  - name: ${DS_PROMETHEUS}
     # <string, required> datasource type. Required
     type: prometheus
     # <string, required> access mode. direct or proxy. Required
