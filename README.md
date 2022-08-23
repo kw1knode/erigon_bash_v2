@@ -15,9 +15,11 @@ Simple script to install and run erigon node
 
 `tail -f /var/log/supervisor/erigon.err.log`
 
-### **If any changes are made to .confs run:** ###
+### **To make changes to erigon.conf** ###
 
 `/etc/supervisor/conf.d/erigon.conf`
+
+### **After making changes, dont forget to update** ###
 
 `supervisorctl update`
 
