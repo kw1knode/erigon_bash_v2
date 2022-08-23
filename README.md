@@ -1,57 +1,42 @@
-Simple script to install and run erigon node + rpcdaemon
+Simple script to install and run erigon node
 ========================================================
-#### **Download install.sh**
+### **Download install.sh** ###
 `git clone https://github.com/kw1knode/erigon_bash.git`
 
 `cd erigon_bash`
 
 `chmod +x install.sh`
 
-#### **Run install.sh**
+### **Run install.sh** ###
 `./install.sh`
 
-#### **Check on the erigon service:**
+### **Check on the erigon service:** ###
 `supervisorctl status erigon`
 
 `tail -f /var/log/supervisor/erigon.err.log`
 
-#### **Check on the rpcdaemon status:**
-`supervisorctl status rpcdaemon `
+### **If any changes are made to .confs run:** ###
 
-`tail -f /var/log/supervisor/rpcdaemon.err.log`
-
-#### **If any changes are made to .confs run:**
+`/etc/supervisor/conf.d/erigon.conf`
 
 `supervisorctl update`
 
-`/etc/supervisor/conf.d/erigon.conf`
-`/etc/supervisor/conf.d/rpcdaemon.conf`
-
-
-
-
-
-#### **Updating Node**
+### **Updating Node** ###
 
 ```>cd /opt/github/erigon/
 git pull
 make
-supervisorctl stop rpcdaemon
 supervisorctl stop erigon
 cp -r ./build/bin /opt/erigon/
 supervisorctl start erigon
-supervisorctl start rpcdaemon
 ```
 
 
-#### **Allow Peers**
+### **Allow Peers** ###
 ```ufw allow 30303```
 
-#### **Allow RPC endpoint**
+### **Allow RPC endpoint** ###
 ```ufw allow from 1.1.1.1 to any port 8545```
-
-#### **Erigon 8.03 Alpha **
-```chaindata``` folder was moved from ```datadir/erigon/chaindata``` into ```datadir/chaindata``` Please move ```chaindata``` manually before starting the new version
 
 
 
