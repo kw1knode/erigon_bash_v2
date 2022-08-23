@@ -26,7 +26,7 @@ sudo mkdir -p /data/erigon/datadir
 sudo chown -R erigon:erigon /data/erigon
 
 echo  "[program:erigon]
-command=bash -c '/opt/erigon/bin/erigon --datadir="/data/erigon/datadir" --rpc.gascap=50000000 --rpc.batch.concurrency=100 --http.addr="0.0.0.0" --http.port=8545 --private.api.addr="0.0.0.0:9595" --http.corsdomain="*" --http.api="eth,erigon,web3,net,debug,trace,txpool" --torrent.download.rate 90m --state.cache=2000000 --http --ws --metrics'
+command=bash -c '/opt/erigon/bin/erigon --datadir="/data/erigon/datadir" --rpc.gascap=50000000 --rpc.batch.concurrency=100 --http.addr="0.0.0.0" --http.port=8545 --private.api.addr="0.0.0.0:9595" --http.corsdomain="*" --http.api="eth,erigon,web3,net,debug,trace,txpool" --torrent.download.rate 90m --state.cache=2000000 --http --ws --authrpc.jwtsecret=/data/erigon/datadir/jwt.hex --metrics'
 user=erigon
 autostart=true
 autorestart=true
