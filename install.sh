@@ -4,6 +4,7 @@ apt update -y && apt upgrade -y && apt autoremove -y
 #Prerequisites
 sudo apt-get install -y build-essential
 
+sudo mkdir -p /var/lib/jwtsecret
 openssl rand -hex 32 | sudo tee /var/lib/jwtsecret/jwt.hex > /dev/null
 
 
@@ -43,7 +44,6 @@ Restart=always
 RestartSec=5
 ExecStart=/usr/local/bin/erigon/build/bin/erigon \
   --datadir=/var/lib/erigon \
-  --http.api=engine,eth,net \
   --rpc.gascap=50000000 \
   --http \
   --ws \
@@ -52,11 +52,11 @@ ExecStart=/usr/local/bin/erigon/build/bin/erigon \
   --http.addr="0.0.0.0" \
   --http.port=8545 \
   --http.api="eth,erigon,web3,net,debug,trace,txpool" \
+  --authrpc.port=8551 \
   --private.api.addr="0.0.0.0:9595" \
   --http.corsdomain="*" \
   --torrent.download.rate 90m \
   --authrpc.jwtsecret=/var/lib/jwtsecret/jwt.hex \
-  --private.api.addr= \
   --metrics 
 [Install]
 WantedBy=default.target" >> /etc/systemd/system/erigon.service \
