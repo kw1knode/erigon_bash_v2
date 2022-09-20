@@ -11,13 +11,20 @@ Simple script to install and run erigon node
 `./install.sh`
 
 ### **Check on the erigon service:** ###
+
 `sudo journalctl -fu erigon`
 
+### ***Check on lighthouse beacon service** ###
+
+sudo journalctl -fu lighthousebeacon
 
 ### **To make changes to erigon.service** ###
 
 `sudo nano /etc/systemd/system/erigon.service`
 
+### **To make changes to lighthousebeacon.service** ###
+
+`sudo nano /etc/systemd/system/lighthousebeacon.service`
 
 ### **After making changes, dont forget to update** ###
 
@@ -25,9 +32,14 @@ Simple script to install and run erigon node
 
 `sudo systemctl restart erigon`
 
+`sudo systemctl lighthousebeacon`
+
 
 ### **Allow Peers** ###
+
 ```ufw allow 30303```
+
+```ufw allow 9000```
 
 ### **Allow RPC endpoint** ###
 ```ufw allow from 1.1.1.1 to any port 8545```
