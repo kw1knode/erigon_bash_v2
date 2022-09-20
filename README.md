@@ -29,7 +29,7 @@ Is checkpoint sync less secure? No, in fact it is more secure! Checkpoint sync g
 
 `sudo journalctl -fu erigon`
 
-### ***Check on lighthouse beacon service** ###
+### **Check on lighthouse beacon service** ###
 
 `sudo journalctl -fu lighthousebeacon`
 
