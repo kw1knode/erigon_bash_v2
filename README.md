@@ -16,7 +16,7 @@ Simple script to install and run erigon node
 
 ### ***Check on lighthouse beacon service** ###
 
-sudo journalctl -fu lighthousebeacon
+`sudo journalctl -fu lighthousebeacon`
 
 ### **To make changes to erigon.service** ###
 
@@ -32,7 +32,7 @@ sudo journalctl -fu lighthousebeacon
 
 `sudo systemctl restart erigon`
 
-`sudo systemctl lighthousebeacon`
+`sudo systemctl restart lighthousebeacon`
 
 
 ### **Allow Peers** ###
