@@ -22,6 +22,7 @@ Simple script to install and run erigon node
 ### **After making changes, dont forget to update** ###
 
 `sudo systemctl daemon-reload`
+
 `sudo systemctl restart erigon`
 
 
