@@ -11,27 +11,18 @@ Simple script to install and run erigon node
 `./install.sh`
 
 ### **Check on the erigon service:** ###
-`supervisorctl status erigon`
+`sudo journalctl -fu erigon`
 
-`tail -f /var/log/supervisor/erigon.err.log`
 
-### **To make changes to erigon.conf** ###
+### **To make changes to erigon.service** ###
 
-`/etc/supervisor/conf.d/erigon.conf`
+sudo nano /etc/systemd/system/erigon.service
+
 
 ### **After making changes, dont forget to update** ###
 
-`supervisorctl update`
-
-### **Updating Node** ###
-
-```>cd /opt/github/erigon/
-git pull
-make
-supervisorctl stop erigon
-cp -r ./build/bin /opt/erigon/
-supervisorctl start erigon
-```
+`sudo systemctl daemon-reload`
+`sudo systemctl restart erigon`
 
 
 ### **Allow Peers** ###
