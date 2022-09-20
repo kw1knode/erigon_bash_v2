@@ -32,7 +32,7 @@ sudo mkdir -p /var/lib/erigon
 sudo chown -R erigon:erigon /var/lib/erigon
 
 echo "[Unit]
-Description=Erigon Execution Client (Ethereum Main Network)
+Description=Erigon Execution Client (Mainnet)
 After=network.target
 Wants=network.target
 [Service]
@@ -62,5 +62,42 @@ ExecStart=/usr/local/bin/erigon/build/bin/erigon \
 WantedBy=default.target" >> /etc/systemd/system/erigon.service \
 
 
+#Lighthouse Beacon
+
+cd ~
+curl -LO https://github.com/sigp/lighthouse/releases/download/v3.1.0/lighthouse-v3.1.0-x86_64-unknown-linux-gnu.tar.gz
+tar xvf lighthouse-v3.1.0-x86_64-unknown-linux-gnu.tar.gz
+sudo cp lighthouse /usr/local/bin
+rm lighthouse-v3.1.0-x86_64-unknown-linux-gnu.tar.gz
+rm lighthouse
+sudo useradd --no-create-home --shell /bin/false lighthousebeacon
+sudo mkdir -p /var/lib/lighthouse/beacon
+sudo chown -R lighthousebeacon:lighthousebeacon /var/lib/lighthouse/beacon
+
+echo "[Unit]
+Description=Lighthouse Consensus Client BN (Mainnet)
+Wants=network-online.target
+After=network-online.target
+[Service]
+User=lighthousebeacon
+Group=lighthousebeacon
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/lighthouse bn \
+  --network mainnet \
+  --datadir /var/lib/lighthouse \
+  --http \
+  --execution-endpoint http://localhost:8551 \
+  --execution-jwt /var/lib/jwtsecret/jwt.hex \
+  --checkpoint-sync-url https://<PROJECT-ID>:<PROJECT-SECRET>@eth2-beacon-mainnet.infura.io \
+  --metrics
+[Install]
+WantedBy=multi-user.target" >> /etc/systemd/system/lighthousebeacon.service \
+
+
+
+
 sudo systemctl daemon-reload
 sudo systemctl start erigon
+sudo systemctl start lighthousebeacon
