@@ -4,6 +4,8 @@ apt update -y && apt upgrade -y && apt autoremove -y
 #Prerequisites
 sudo apt-get install -y build-essential
 
+openssl rand -hex 32 | sudo tee /var/lib/jwtsecret/jwt.hex > /dev/null
+
 
 
 #Golang
