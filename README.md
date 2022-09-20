@@ -16,7 +16,7 @@ Simple script to install and run erigon node
 
 ### **To make changes to erigon.service** ###
 
-sudo nano /etc/systemd/system/erigon.service
+`sudo nano /etc/systemd/system/erigon.service`
 
 
 ### **After making changes, dont forget to update** ###
