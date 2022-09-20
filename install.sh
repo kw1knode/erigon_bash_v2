@@ -101,3 +101,5 @@ WantedBy=multi-user.target" >> /etc/systemd/system/lighthousebeacon.service \
 sudo systemctl daemon-reload
 sudo systemctl start erigon
 sudo systemctl start lighthousebeacon
+sudo systemctl enable erigon
+sudo systemctl enable lighthousebeacon
