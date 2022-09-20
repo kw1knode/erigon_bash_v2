@@ -26,7 +26,7 @@ make erigon
 cd ~
 sudo cp -a erigon-2022.09.02 /usr/local/bin/erigon
 rm v2022.09.02.tar.gz
-rm -r erigon-2022.09.01
+rm -r erigon-2022.09.02
 sudo useradd --no-create-home --shell /bin/false erigon
 sudo mkdir -p /var/lib/erigon
 sudo chown -R erigon:erigon /var/lib/erigon
