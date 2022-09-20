@@ -3,7 +3,7 @@ Simple script to install and run erigon node
 ### **Download install.sh** ###
 `git clone https://github.com/kw1knode/erigon_bash_v2.git`
 
-`cd erigon_bash`
+`cd erigon_bash_v2`
 
 `chmod +x install.sh`
 
