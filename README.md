@@ -1,4 +1,4 @@
-Simple script to install and run erigon node
+Erigon Archive + Lighthouse Beacon Install
 ========================================================
 ### **Download install.sh** ###
 `git clone https://github.com/kw1knode/erigon_bash_v2.git`
